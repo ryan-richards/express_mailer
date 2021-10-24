@@ -3,9 +3,13 @@ const router = express.Router();
 const email = require('./email');
 
 
+app.use(express.urlencoded({extended: true})); 
+app.use(express.json());
+
 router.post("/", async (req, res, next) => {
+    const name
     try {
-      res.json(await email.sendOrderConfirmation(req.body));
+      res.send(await email.sendOrderConfirmation(req.body));
     } catch (err) {
       next(err);
     }
