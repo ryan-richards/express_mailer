@@ -3,7 +3,10 @@ const router = express.Router();
 const email = require('./email');
 var cors = require('cors')
 
-router.use(cors({credentials: true, origin: true}))
+router.use(cors({
+    origin: '*'
+}));
+
 
 router.all('*', cors());
 
