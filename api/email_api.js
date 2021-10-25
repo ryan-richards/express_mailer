@@ -3,6 +3,8 @@ const router = express.Router();
 const email = require('./email');
 var cors = require('cors')
 
+router.use(cors({credentials: true, origin: true}))
+
 router.all('*', cors());
 
 router.use(express.urlencoded({extended: true})); 
@@ -10,7 +12,6 @@ router.use(express.json());
 
 
 router.post("/", async (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
     try {
       res.send(await email.sendOrderConfirmation(req.body));
     } catch (err) {
