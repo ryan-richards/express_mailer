@@ -17,7 +17,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/email_api", emailApi);
 
 app.get('/', (req, res) => {
-  res.json({message: 'alive'});
+  res.json({message: 'Server Live'});
 })
 
 app.use((err, req, res, next) => {
