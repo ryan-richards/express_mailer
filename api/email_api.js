@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const email = require('./email');
+const supabase = require('./supabase');
 var cors = require('cors')
 
 router.use(cors({
