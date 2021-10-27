@@ -32,7 +32,8 @@ async function sendNotification(emailParams) {
   const notificationAdmin = {
     from: 'hello@ryanjrichards.com', // sender address
     to: "ryanjr@me.com", // list of receivers
-    subject: "Thank you for your Inquiry", // Subject line
+    replyTo: emailParams.recipient, //reply to this email directly to the user.
+    subject: "New Inquiry", // Subject line
     html: notifyAdminEmail(emailParams.guests, emailParams.recipient, emailParams.venue, emailParams.date), // html body
   }
 
@@ -41,7 +42,7 @@ async function sendNotification(emailParams) {
 
 
   function welcomeUserEmail(guests) {
-    return `<b>We will be in touch soon! Your requested gelato for ${guests} guests.</b>`;
+    return `<b>We will be in touch soon! You requested gelato for ${guests} guests.</b>`;
   }
 
   function notifyAdminEmail(guests, recipient, venue, date) {
