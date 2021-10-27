@@ -16,28 +16,28 @@ async function sendNotification(emailParams) {
 
   const notificationUser = {
     from: 'hello@ryanjrichards.com', // sender address
-    to: emailParams.toEmail, // list of receivers
+    to: emailParams.recipient, // list of receivers
     subject: "Thank you for your Inquiry", // Subject line
-    html: welcomeUserEmail(emailParams.quote), // html body
+    html: welcomeUserEmail(emailParams.guests), // html body
   }
 
   const notificationAdmin = {
     from: 'hello@ryanjrichards.com', // sender address
     to: "ryanjr@me.com", // list of receivers
     subject: "Thank you for your Inquiry", // Subject line
-    html: notifyAdminEmail(emailParams.quote, emailParams.toEmail, emailParams.venue, emailParams.date), // html body
+    html: notifyAdminEmail(emailParams.guests, emailParams.recipient, emailParams.venue, emailParams.date), // html body
   }
 
   let infoUser = await transporter.sendMail(notificationUser);
   let infoAdmin = await transporter.sendMail(notificationAdmin);
 
 
-  function welcomeUserEmail(quote) {
-    return `<b>We will be in touch soon! ${quote}</b>`;
+  function welcomeUserEmail(guests) {
+    return `<b>We will be in touch soon! Your requested gelato for ${guests} guests.</b>`;
   }
 
-  function notifyAdminEmail(quote, email, venue, date) {
-    return `<b>You have a new inquiry from ${email} for a wedding at ${venue} on ${date}. User was quoted : ${quote}.</b>`;
+  function notifyAdminEmail(guests, recipient, venue, date) {
+    return `<b>You have a new inquiry from ${recipient} for a wedding at ${venue} on ${date}. For ${guests} guests.</b>`;
   }
 
   console.log("Message sent: %s", infoUser.messageId);
