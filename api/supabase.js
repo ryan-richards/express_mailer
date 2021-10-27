@@ -7,7 +7,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 const get_inquires = async () => {
     let { data, error } = await supabase
-      .from('new-inquires')
+      .from('new-inquiries')
       .select('*')
       .order('added', {ascending: true})
       .limit(1)

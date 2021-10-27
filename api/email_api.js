@@ -14,20 +14,12 @@ router.use(express.urlencoded({extended: true}));
 router.use(express.json());
 
 
-router.post("/test", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
     try {
       res.send(await email.getData());
     } catch (err) {
       next(err);
     }
-});
-
-router.get("/", async (req, res, next) => {
-  try {
-    res.send(await email.getData());
-  } catch (err) {
-    next(err);
-  }
 });
 
 
