@@ -6,8 +6,17 @@ const supabase = require('./supabase');
 async function getData(){
     const emailParams = await supabase.get_inquires();
     console.log(emailParams + "email found, sending notify to customer and admin now");
+    return emailParams;
+}
 
-    // create reusable transporter object using the default SMTP transport
+// async..await is not allowed in global scope, must use a wrapper
+async function sendNotification() {
+
+  const emailParams = await getData();
+  console.log(emailParams.recipient + "in send notify function now");
+
+  
+  // create reusable transporter object using the default SMTP transport
   var transporter = nodemailer.createTransport({
     host: "smtpout.secureserver.net",
     port: 587, // port for secure SMTP
@@ -47,8 +56,7 @@ async function getData(){
   console.log("Message sent: %s", infoAdmin.messageId);
 }
 
-
-
 module.exports = {
+  sendNotification,
   getData
 }
