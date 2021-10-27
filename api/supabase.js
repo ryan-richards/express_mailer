@@ -20,5 +20,7 @@ const get_inquires = async () => {
     console.log(data)
     return data;
   }
-  
-  get_inquires()
+
+  module.exports = {
+    get_inquires
+  }
