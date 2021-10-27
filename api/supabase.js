@@ -9,7 +9,7 @@ const get_inquires = async () => {
     let { data, error } = await supabase
       .from('new-inquiries')
       .select('*')
-      .order('added', {ascending: true})
+      .order('added', {ascending: false})
       .limit(1)
   
     if (error) {
