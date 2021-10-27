@@ -17,7 +17,7 @@ const get_inquires = async () => {
       return
     }
   
-    console.log(data.recipient)
+    console.log(data)
     return data;
   }
 
