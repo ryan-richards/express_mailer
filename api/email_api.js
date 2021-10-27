@@ -16,10 +16,11 @@ router.use(express.json());
 
 router.post("/", async (req, res, next) => {
     try {
-      res.send(await email.sendOrderConfirmation(req.body));
+      res.send(await email.sendNotification(req.body));
     } catch (err) {
       next(err);
     }
-  });
+});
+
 
 module.exports = router;
