@@ -5,7 +5,7 @@ const supabase = require('./supabase');
 // async..await is not allowed in global scope, must use a wrapper
 async function sendNotification() {
 
-  let emailParams = await supabase.get_inquires();
+  let emailParams = supabase.get_inquires();
   console.log(emailParams.recipient + "in send notify function now");
 
 
