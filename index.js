@@ -1,7 +1,8 @@
 const express = require('express');
 const emailApi = require('./api/email_api')
-const supabaseApi = require('./api/email_api/get_inquires')
 var cors = require('cors')
+
+
 
 const app = express();
 const port = 3000 || process.env.PORT;
@@ -13,12 +14,10 @@ app.options('*',cors())
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-
-app.use("/api/email_api/get_inquires", supabaseApi);
 app.use("/api/email_api", emailApi);
 
 app.get('/', (req, res) => {
-  res.json({message: 'Server Live'});
+  res.send();
 })
 
 app.use((err, req, res, next) => {
