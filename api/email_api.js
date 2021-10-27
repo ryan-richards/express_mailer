@@ -14,9 +14,9 @@ router.use(express.urlencoded({extended: true}));
 router.use(express.json());
 
 
-router.get("/", async (req, res, next) => {
+router.post("/", async (req, res, next) => {
     try {
-      res.send(await email.getData());
+      res.send(await email.getData(req.body));
     } catch (err) {
       next(err);
     }
