@@ -3,14 +3,10 @@ const nodemailer = require("nodemailer");
 const supabase = require('./supabase');
 
 
-async function getData(send){
-  if(send.sendNotify){
+async function getData(){
     const emailParams = supabase.get_inquires();
     console.log(emailParams + "email found, sending notify to customer and admin now");
     sendNotification(emailParams);
-  } else {
-    console.log("send notify is false");
-  }
 }
 
 // async..await is not allowed in global scope, must use a wrapper
