@@ -16,14 +16,14 @@ async function sendNotification(emailParams) {
 
   const notificationUser = {
     from: 'hello@ryanjrichards.com', // sender address
-    to: "ryanjr@me.com" + emailParams.toEmail, // list of receivers
+    to: emailParams.toEmail, // list of receivers
     subject: "Thank you for your Inquiry", // Subject line
     html: welcomeUserEmail(emailParams.quote), // html body
   }
 
   const notificationAdmin = {
     from: 'hello@ryanjrichards.com', // sender address
-    to: "ryanjr@me.com" + emailParams.toEmail, // list of receivers
+    to: "ryanjr@me.com", // list of receivers
     subject: "Thank you for your Inquiry", // Subject line
     html: notifyAdminEmail(emailParams.quote, emailParams.toEmail, emailParams.venue, emailParams.date), // html body
   }
