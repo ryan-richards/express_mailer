@@ -1,5 +1,6 @@
 const express = require('express');
 const emailApi = require('./api/email_api')
+const supabaseApi = require('./api/email_api/get_inquires')
 var cors = require('cors')
 
 const app = express();
@@ -13,7 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 
-
+app.use("/api/email_api/get_inquires", supabaseApi);
 app.use("/api/email_api", emailApi);
 
 app.get('/', (req, res) => {
