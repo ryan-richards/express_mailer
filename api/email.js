@@ -2,12 +2,15 @@
 const nodemailer = require("nodemailer");
 const supabase = require('./supabase');
 
+
+async function getData(){
+  let emailParams = await supabase.get_inquires();
+  console.log(emailParams.recipient + "in get data function");
+  await sendNotification(emailParams);
+}
+
 // async..await is not allowed in global scope, must use a wrapper
-async function sendNotification() {
-
-  let emailParams = supabase.get_inquires();
-  console.log(emailParams.recipient + "in send notify function now");
-
+async function sendNotification(emailParams) {
 
   // create reusable transporter object using the default SMTP transport
   var transporter = nodemailer.createTransport({
@@ -50,5 +53,6 @@ async function sendNotification() {
 }
 
 module.exports = {
+  getData,
   sendNotification,
 }
