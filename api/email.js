@@ -1,5 +1,11 @@
 "use strict";
 const nodemailer = require("nodemailer");
+const supabase = require('./supabase');
+
+
+async function getData(){
+  return supabase.get_inquires();
+}
 
 // async..await is not allowed in global scope, must use a wrapper
 async function sendNotification(emailParams) {
@@ -45,5 +51,6 @@ async function sendNotification(emailParams) {
 }
 
 module.exports = {
-  sendNotification
+  sendNotification,
+  getData
 }
