@@ -22,5 +22,13 @@ router.post("/", async (req, res, next) => {
     }
 });
 
+router.post("/get_inquires", async (req, res, next) => {
+  try {
+    res.send(await supabase.get_inquires());
+  } catch (err) {p
+    next(err);
+  }
+});
+
 
 module.exports = router;
