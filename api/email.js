@@ -5,7 +5,7 @@ const supabase = require('./supabase');
 
 async function getData(){
   const emailParams = await supabase.get_inquires();
-  console.log(emailParams.recipient);
+  console.log(emailParams);
   await sendNotification(emailParams);
 }
 
