@@ -17,7 +17,7 @@ const get_inquires = async () => {
       return
     }
   
-    console.log(data + "log from supabase module")
+    console.log(data)
     return data;
   }
 
