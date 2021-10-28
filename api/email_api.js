@@ -16,11 +16,18 @@ router.use(express.json());
 
 router.post("/", async (req, res, next) => {
     try {
-      console.log(req.body);
-      res.send(await email.getData(req.body));
+      res.send(await email.getData());
     } catch (err) {
       next(err);
     }
+});
+
+router.post("/contact", async (req, res, next) => {
+  try {
+    res.send(await email.getContactData());
+  } catch (err) {
+    next(err);
+  }
 });
 
 
