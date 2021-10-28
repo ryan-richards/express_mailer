@@ -5,9 +5,12 @@ const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
-const get_inquires = async () => {
+const get_inquires = async (table) => {
+
+    let tableValue = table;
+    
     let { data, error } = await supabase
-      .from('new-inquiries')
+      .from(tableValue)
       .select('*')
       .order('added', {ascending: false})
       .limit(1)
