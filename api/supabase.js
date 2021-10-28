@@ -7,7 +7,7 @@ const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
 const get_inquires = async (table) => {
 
-    let tableValue = table;
+    let tableValue = table.table;
     
     let { data, error } = await supabase
       .from(tableValue)
