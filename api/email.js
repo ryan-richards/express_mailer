@@ -8,7 +8,7 @@ const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
 const REFRESH_TOKEN = '1//04QVGgEnPVeNGCgYIARAAGAQSNwF-L9Ire_udAGVuGOm6_IRIvUhwdxqLZe_16o1yTGCEjETkst2yF7d5JJXid4mqhi918ZVLhn0';
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
-oAuth2LClient.setCredentials({refresh_token:REFRESH_TOKEN})
+oAuth2Client.setCredentials({refresh_token:REFRESH_TOKEN})
 
 // async..await is not allowed in global scope, must use a wrapper
 async function sendNotification(emailParams) {
