@@ -62,6 +62,8 @@ async function sendNotification(emailParams) {
 
 async function sendContact(emailParams) {
 
+  const accessToken = await oAuth2Client.getAccessToken()
+
   // create reusable transporter object using the default SMTP transport
   var transporter = nodemailer.createTransport({
     service: 'gmail',
