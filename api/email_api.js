@@ -17,7 +17,7 @@ router.use(express.json());
 router.post("/", async (req, res, next) => {
     try {
       console.log(req.body);
-      res.send(await email.getData());
+      res.send(await email.sendNotification(req.body));
     } catch (err) {
       next(err);
     }
