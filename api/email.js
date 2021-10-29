@@ -1,29 +1,44 @@
 "use strict";
 const nodemailer = require("nodemailer");
+const {google} = require('googleapis');
+
+const CLIENT_ID = '279778581419-fm16hsck1735h8h7jtqer4hp1a9v9i80.apps.googleusercontent.com';
+const CLIENT_SECRET = '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';
+const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = '1//04QVGgEnPVeNGCgYIARAAGAQSNwF-L9Ire_udAGVuGOm6_IRIvUhwdxqLZe_16o1yTGCEjETkst2yF7d5JJXid4mqhi918ZVLhn0';
+
+const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
+oAuth2LClient.setCredentials({refresh_token:REFRESH_TOKEN})
 
 // async..await is not allowed in global scope, must use a wrapper
 async function sendNotification(emailParams) {
 
+  const accessToken = await oAuth2Client.getAccessToken()
+
+
   // create reusable transporter object using the default SMTP transport
   var transporter = nodemailer.createTransport({
-    host: "smtpout.secureserver.net",
-    port: 587, // port for secure SMTP
+    service: 'gmail',
     auth: {
-      user: process.env.GODADDY_EMAIL,
-      pass: process.env.GODADDY_PASS,
-    },
+      type: 'OAuth2',
+      user: 'info@brookavenue.co.uk',
+      clientId: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      refreshToken: REFRESH_TOKEN,
+      accessToken: accessToken,
+    }
   });
 
   const notificationUser = {
-    from: 'hello@ryanjrichards.com', // sender address
+    from: 'info@brookavenue.co.uk', // sender address
     to: emailParams.recipient, // list of receivers
     subject: "Thank you for your Inquiry", // Subject line
     html: welcomeUserEmail(), // html body
   }
   
   const notificationAdmin = {
-    from: 'hello@ryanjrichards.com', // sender address
-    to: "ryanjr@me.com", // list of receivers
+    from: 'info@brookavenue.co.uk', // sender address
+    to: "info@brookavenue.co.uk", // list of receivers
     replyTo: emailParams.recipient, //reply to this email directly to the user.
     subject: "New Inquiry", // Subject line
     html: notifyAdminEmail(emailParams.guests, emailParams.recipient, emailParams.venue, emailParams.date), // html body
@@ -49,24 +64,27 @@ async function sendContact(emailParams) {
 
   // create reusable transporter object using the default SMTP transport
   var transporter = nodemailer.createTransport({
-    host: "smtpout.secureserver.net",
-    port: 587, // port for secure SMTP
+    service: 'gmail',
     auth: {
-      user: process.env.GODADDY_EMAIL,
-      pass: process.env.GODADDY_PASS,
-    },
+      type: 'OAuth2',
+      user: 'info@brookavenue.co.uk',
+      clientId: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      refreshToken: REFRESH_TOKEN,
+      accessToken: accessToken,
+    }
   });
 
   const notificationUser = {
-    from: 'hello@ryanjrichards.com', // sender address
+    from: 'info@brookavenue.co.uk', // sender address
     to: emailParams.recipient, // list of receivers
     subject: "Thank you for your Inquiry", // Subject line
     html: welcomeUserEmail(emailParams.name), // html body
   }
   
   const notificationAdmin = {
-    from: 'hello@ryanjrichards.com', // sender address
-    to: "ryanjr@me.com", // list of receivers
+    from: 'info@brookavenue.co.uk', // sender address
+    to: "info@brookavenue.co.uk", // list of receivers
     replyTo: emailParams.recipient, //reply to this email directly to the user.
     subject: "New Inquiry", // Subject line
     html: notifyAdminEmail(emailParams.name, emailParams.guests, emailParams.recipient, emailParams.venue, emailParams.date, emailParams.message), // html body
