@@ -25,7 +25,8 @@ router.post("/", async (req, res, next) => {
 
 router.post("/contact", async (req, res, next) => {
   try {
-    res.send(await email.getContactData());
+    console.log(req.body);
+    res.send(await email.sendContact(req.body));
   } catch (err) {
     next(err);
   }
