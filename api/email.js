@@ -6,6 +6,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
 const REFRESH_TOKEN = process.env.REFRESH_TOKEN;
+const SENDER_EMAIL = process.env.SENDER_EMAIL
 
 const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI)
 oAuth2Client.setCredentials({refresh_token:REFRESH_TOKEN})
@@ -20,7 +21,7 @@ async function sendNotification(emailParams) {
     service: 'gmail',
     auth: {
       type: 'OAuth2',
-      user: 'info@brookavenue.co.uk',
+      user: SENDER_EMAIL,
       clientId: CLIENT_ID,
       clientSecret: CLIENT_SECRET,
       refreshToken: REFRESH_TOKEN,
