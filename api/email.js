@@ -101,8 +101,8 @@ async function sendContact(emailParams) {
   }
 
   function notifyAdminEmail(name, guests, recipient, venue, date, message) {
-    return `<b>You have a new inquiry from ${name} for a wedding at ${venue} on ${date}. For ${guests} guests. They inlcuded this message : "${message}" </b>
-    <p>Resond to them here ${recipient}</p>
+    return `<b>Inquiry from ${name} for a wedding at ${venue} on ${date}. For ${guests} guests. Message : "${message}" </b>
+    <p>Resond here ${recipient}</p>
     `;
   }
 
