@@ -32,7 +32,7 @@ async function sendNotification(emailParams) {
   const notificationUser = {
     from: 'info@brookavenue.co.uk', // sender address
     to: emailParams.recipient, // list of receivers
-    subject: "Thank you for your Inquiry", // Subject line
+    subject: "Thank you for your Enquiry", // Subject line
     html: welcomeUserEmail(), // html body
   }
   
@@ -40,7 +40,7 @@ async function sendNotification(emailParams) {
     from: 'info@brookavenue.co.uk', // sender address
     to: "info@brookavenue.co.uk", // list of receivers
     replyTo: emailParams.recipient, //reply to this email directly to the user.
-    subject: "New Inquiry", // Subject line
+    subject: "New Enquiry", // Subject line
     html: notifyAdminEmail(emailParams.guests, emailParams.recipient, emailParams.venue, emailParams.date), // html body
   }
 
@@ -52,8 +52,8 @@ async function sendNotification(emailParams) {
     return `<b>We will be in touch soon!</b>`;
   }
 
-  function notifyAdminEmail(guests, recipient, venue, date, message) {
-    return `<b>You have a new inquiry from ${recipient} for a wedding at ${venue} on ${date}. For ${guests} guests. They inlcuded this message : "${message}" </b>`;
+  function notifyAdminEmail(guests, recipient, venue, date) {
+    return `<b>Enquiry from ${recipient} for a wedding at ${venue} on ${date}. For ${guests} guests.</b>`;
   }
 
   console.log("Message sent: %s", infoUser.messageId);
@@ -80,7 +80,7 @@ async function sendContact(emailParams) {
   const notificationUser = {
     from: 'info@brookavenue.co.uk', // sender address
     to: emailParams.recipient, // list of receivers
-    subject: "Thank you for your Inquiry", // Subject line
+    subject: "Thank you for your Enquiry", // Subject line
     html: welcomeUserEmail(emailParams.name), // html body
   }
   
@@ -88,7 +88,7 @@ async function sendContact(emailParams) {
     from: 'info@brookavenue.co.uk', // sender address
     to: "info@brookavenue.co.uk", // list of receivers
     replyTo: emailParams.recipient, //reply to this email directly to the user.
-    subject: "New Inquiry", // Subject line
+    subject: "New Enquiry", // Subject line
     html: notifyAdminEmail(emailParams.name, emailParams.guests, emailParams.recipient, emailParams.venue, emailParams.date, emailParams.message), // html body
   }
 
@@ -101,7 +101,7 @@ async function sendContact(emailParams) {
   }
 
   function notifyAdminEmail(name, guests, recipient, venue, date, message) {
-    return `<b>Inquiry from ${name} for a wedding at ${venue} on ${date}. For ${guests} guests. Message : "${message}" </b>
+    return `<b>Enquiry from ${name} for a wedding at ${venue} on ${date}. For ${guests} guests. Message : "${message}"</b>
     <p>Resond here ${recipient}</p>
     `;
   }
